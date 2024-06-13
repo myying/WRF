@@ -1,5 +1,6 @@
 !WRF:MODEL_LAYER:PHYSICS
 !
+#define DROPLET_REDUCE
 
 ! THIS MODULE CONTAINS THE TWO-MOMENT MICROPHYSICS CODE DESCRIBED BY
 !     MORRISON ET AL. (2009, MWR)
@@ -273,7 +274,13 @@ SUBROUTINE MORR_TWO_MOMENT_INIT(morr_rimed_ice) ! RAS
 ! SET CONSTANT DROPLET CONCENTRATION (UNITS OF CM-3)
 ! IF NO COUPLING WITH WRF-CHEM
 
-      NDCNST = 250.
+!!      NDCNST = 250.
+#ifdef DROPLET_REDUCE
+! modification for more pristine Arctic clouds from RASM - taken from Polar WRF' Morrison scheme
+ ndcnst = 100.e+6
+#else
+ ndcnst = 200.e+6
+#endif
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 ! NOTE, THE FOLLOWING OPTIONS RELATED TO DROPLET ACTIVATION 
