@@ -1,0 +1,1 @@
+    CHARACTER (LEN=*), PARAMETER :: commit_version = 'git commit c425c4b5a93ee5c56c5fd1fee2588e878c26982c'
